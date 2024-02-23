@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="product_name" type="id" />
+    <item name="item_brand" type="id" />
+    <item name="item_name" type="id" />
+    <item name="item_image" type="id" />
+</resources>
