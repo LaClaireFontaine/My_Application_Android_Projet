@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.my_application_android_projet_1.Series as Series1
 
 class ListFragment : Fragment() {
 
@@ -20,7 +20,7 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(
-            R.layout.list,
+            R.layout.list_item,
             container,
             false,
         )
@@ -30,20 +30,21 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val data = List(100) {
-            generateFakeProduct()
+            generateFakeSerie()
         }
 
         view.findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = ListAdapter(data, object : OnItemClickListener {
-                override fun onItemClicked(product: Product) {
+                override fun onItemClicked(series: Series1) {
                     // TODO
+                    var product = null
                     findNavController().navigate(
                         ListFragmentDirections.actionListFragmentToDetailsFragment(product)
                     )
                 }
 
-            })
+                })
 
         }
 
@@ -52,7 +53,7 @@ class ListFragment : Fragment() {
 
 }
 
-class ListAdapter(private val data: List<Product>, val listener: OnItemClickListener) :
+class ListAdapter(private val data: List<Series1>, val listener: OnItemClickListener) :
     RecyclerView.Adapter<ListItem>() {
 
     override fun getItemCount(): Int {
@@ -62,36 +63,35 @@ class ListAdapter(private val data: List<Product>, val listener: OnItemClickList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItem {
         return ListItem(
             LayoutInflater.from(parent.context)
+                //.inflate(R.layout.list_item, parent, false)
                 .inflate(R.layout.list_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ListItem, position: Int) {
-        val product = data[position]
-        holder.bindItem(product)
+        val series = data[position]
+        //holder.bindItem(series)
         holder.itemView.setOnClickListener {
-            listener.onItemClicked(product)
+            listener.onItemClicked(series)
         }
     }
 
 }
 
 class ListItem(v: View) : RecyclerView.ViewHolder(v) {
-
-    val name: TextView = v.findViewById(R.id.item_title)
-    val brand: TextView = v.findViewById(R.id.item_brand)
-    val image: ImageView = v.findViewById(R.id.item_image)
-
-    fun bindItem(product: Product) {
-        name.text = product.name
-        brand.text = product.brand
-
-        Glide.with(itemView).load(product.thumbnail).into(image)
-    }
-
-
+    val name: TextView = v.findViewById(R.id.retour)
+    val image: ImageView = v.findViewById(R.id.titre)
+    val prodtv: ImageView = v.findViewById(R.id.prodtv)
+    val proddate: ImageView = v.findViewById(R.id.proddate)
+    val prodepis: ImageView = v.findViewById(R.id.prodepis)
 }
+/*
+    fun bindItem(series: Series) {
+        name.text = series.name
+    }*/
+
+
 
 interface OnItemClickListener {
-    fun onItemClicked(product: Product)
+    fun onItemClicked(series: Series1)
 }

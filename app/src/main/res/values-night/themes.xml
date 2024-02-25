@@ -3,5 +3,9 @@
     <style name="Base.Theme.My_Application_Android_Projet_1" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+            <item name="android:windowBackground">#15232E</item>
+            <!-- Autres attributs de style ici -->
+        </style>
     </style>
 </resources>

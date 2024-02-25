@@ -17,7 +17,8 @@
         android:name="com.example.my_application_android_projet_1.DetailsFragment"
         android:label="DetailsFragment" >
         <argument
-            android:name="product"
-            app:argType="com.example.my_application_android_projet_1.Product" />
+            android:name="Series"
+            app:argType="com.example.my_application_android_projet_1.Serie[]"
+            app:nullable="true" />
     </fragment>
 </navigation>
